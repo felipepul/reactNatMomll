@@ -29,7 +29,7 @@ export default function CarScreen({ navigation }) {
       .then((values) => {
         console.log(values);
         let fcar = values.find(value => value.plateNumber == plateNumber);
-        if(plateNumber === '' || brand === '' || state === ''){
+        if(plateNumber === '' || brand === ''){
           setErrorMess('Ingrese todos los datos');
         }else if(fcar != undefined){
           setErrorMess('placa ya fue registrada, intenta con otro')
@@ -65,7 +65,7 @@ export default function CarScreen({ navigation }) {
       }else if (fcar != undefined){
         setErrorMess('placa encontrada');
         setBrand(fcar.brand);
-        setState(fcar.state);
+        setState(fcar.state ? 'disponible' : 'no disponible');
       }else{
         setErrorMess('No se encontro placa');
       }
@@ -113,8 +113,8 @@ export default function CarScreen({ navigation }) {
         outlineColor="#000000"
         label="Estado"
         mode="outlined"
-        onChangeText={(state) => setState(state)}
-        value={state}
+        editable ={false}
+        value={state == '' ? 'disponible': state}
       />
       <View style={[{ backgroundColor: "#D2EDFF", flexDirection: "row" }]}>
         <Button

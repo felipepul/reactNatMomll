@@ -91,6 +91,7 @@ export default function RentScreen({ navigation }) {
             userName: userName,
             plateNumber: plateNumber,
             rentDate: rentDate,
+            stateCar:false
           });
           AsyncStorage.setItem("keyRentCar", JSON.stringify(values));
           console.log();
@@ -132,11 +133,12 @@ export default function RentScreen({ navigation }) {
         if (plateNumber === "") {
           setErrorMess("Ingrese el numero de la placa");
         } else if (frent != undefined) {
-          setErrorMess("Renta  encontrada");
+          setErrorMess("Renta encontrada");
           setRentNumber(frent.rentNumber);
           setUserName(frent.userName);
           setRentDate(frent.rentDate);
           setPlateNumber(frent.plateNumber);
+          setStateCar(frent.stateCar ? 'disponible': ' no disponible');
         } else {
           setErrorMess("Renta no existe");
         }
@@ -200,6 +202,15 @@ export default function RentScreen({ navigation }) {
         mode="outlined"
         onChangeText={(rentNumber) => setRentNumber(rentNumber)}
         value={rentNumber}
+      />
+      <TextInput
+        style={styles.texinput}
+        activeOutlineColor="#000000"
+        outlineColor="#000000"
+        label="estado de placa" 
+        mode="outlined"
+        editable ={false}
+        value={stateCar == '' ? 'diponible' : stateCar}
       />
       <TextInput
         style={styles.texinput}
