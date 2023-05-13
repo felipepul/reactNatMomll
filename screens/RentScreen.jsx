@@ -245,7 +245,7 @@ export default function RentScreen({ navigation }) {
       >
         Limpiar
       </Button>
-      <Buttong
+      <Button
           style={{ marginTop: 10 }}
           icon="login"
           mode="contained"
